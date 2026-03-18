@@ -116,7 +116,7 @@ function startAnimationLoop(data) {
                 // 1. THE CAGE SETTINGS (Use the exact numbers you dialed in earlier!)
                 let rx = 25; 
                 let ry = 12; 
-                let cageOffsetX = 9; 
+                let cageOffsetX = 10; 
                 let cageOffsetY = -5;   
 
                 // 2. PARENT SPACE TRACKING
@@ -159,12 +159,19 @@ window.addEventListener('mousemove', (e) => {
     targetMouseY = e.pageY;
 
     // Parallax for Background Layers
-    const layers = document.querySelectorAll('.layer:not(#character-container)');
+    const layers = document.querySelectorAll('.layer:not(#character-container):not(.sky)');
     const x = (window.innerWidth - e.pageX * 2) / 100;
     const y = (window.innerHeight - e.pageY * 2) / 100;
 
     layers.forEach(layer => {
-        const speed = layer.classList.contains('hills-back') ? 2 : 5;
+        let speed = 2; // Default for back hills
+
+        if (layer.classList.contains('hills-mid')) {
+            speed = 4; // Mid hill moves at medium speed
+        } else if (layer.classList.contains('hills-front')) {
+            speed = 7; // Front hill moves the most (increased for intensity)
+        }
+        
         layer.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px)`;
     });
 });

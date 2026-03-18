@@ -5,11 +5,10 @@
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
-    overflow-x: hidden;
-    background-color: #2D2424; /* Darkest shade from your design */
+    font-family: 'Poppins', sans-serif; /* Global font update */
+    overflow: hidden;
+    background-color: #2D2424;
 }
-
 /* Navbar */
 .navbar {
     position: fixed;
@@ -28,78 +27,132 @@ body {
     gap: 2rem;
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-}
+.nav-links a { color: white; text-decoration: none; font-weight: 500; }
 
-/* Hero Section Container */
+/* Hero Section Base */
 .hero-section {
     position: relative;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
+/* Shared Layer Properties */
 .layer {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: bottom;
 }
 
-/* Matching your Figma Colors */
+/* The "Bleed" effect for Hills to prevent gaps on sides/bottom */
+.hills-back, .hills-mid, .hills-front {
+    height: 120vh; /* Extra height */
+    width: 130%;   /* Extra width */
+    left: -15%;    /* Centering the extra width */
+    bottom: -10vh; /* Sinking slightly into floor */
+}
+
+/* Individual Layer Styling */
 .sky {
-    background: linear-gradient(180deg, #FDECEC 0%, #F5D5D5 100%);
+    background: linear-gradient(to bottom, #453671 0%, #E0F6FF 100%);
     z-index: 1;
 }
 
 .hills-back {
-    background: url('path-to-your-back-hills.svg') no-repeat bottom;
-    background-size: 100%;
-    background-color: #8B5E5E; /* Fallback color */
+    background-color: #8B5E5E;
     z-index: 2;
-    mask-image: linear-gradient(to bottom, black 50%, transparent 100%); /* Simulating hill shapes */
-    clip-path: ellipse(80% 50% at 50% 100%);
+    clip-path: ellipse(80% 45% at 50% 100%);
 }
 
-.hills-front {
-    background-color: #4A3A3A; /* Darker front hill */
+.hills-mid {
+    background-color: #6B4C4C;
     z-index: 3;
-    clip-path: ellipse(100% 40% at 50% 100%);
+    clip-path: ellipse(90% 35% at 50% 100%);
 }
 
-.hero-content {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    color: #4A3A3A;
-}
-/* Position the character container within the parallax stack */
 #character-container {
-    z-index: 2; /* Sits above hills-back (z-index: 2), below hills-front (z-index: 3) */
-    pointer-events: none; /* Allows mouse movement to pass through to the parallax script */
+    z-index: 4; /* Character stands between mid and front hills */
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
 }
 
-/* Ensure the canvas itself is interactive for the State Machine triggers */
 #character-container canvas {
     pointer-events: auto;
-    max-width: 100%;
-    height: auto;
 }
 
-/* Optional: Shift hero-content higher to avoid overlapping the character too much */
-.hero-content {
-    z-index: 10;
-    pointer-events: none; /* Let the mouse reach the character behind the text */
+.hills-front {
+    background-color: #4A3A3A;
+    z-index: 6;
+    clip-path: ellipse(100% 25% at 50% 100%);
 }
+
+.hero-content {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    z-index: 10;
+    text-align: center;
+    color: white;
+    pointer-events: none;
+}
+/* --- HERO CONTENT (The Text) --- */
+.hero-content {
+    position: absolute;
+    /* Perfect Centering */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 100%;
+    text-align: center;
+    color: white;
+    pointer-events: none;
+    
+    /* BEHIND the character (Character is 5, Front Hill is 6) */
+    z-index: 4; 
+}
+
+/* Update these sections in your style.css */
+
+
+
+.hero-content h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900; /* Extra Bold for that 'Hero' look */
+    font-size: 15vw;  /* Massive responsive size */
+    text-transform: uppercase;
+    letter-spacing: -0.2rem; /* Tighter tracking for large text */
+    line-height: 0.8;
+    margin-bottom: 1rem;
+    
+    /* Ensuring it stays behind the character (z-index 4) */
+    position: relative;
+    z-index: 4; 
+    
+    /* Subtle glow/depth */
+    text-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.hero-content p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 2vw; /* Scaled paragraph text */
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+/* --- THE CHARACTER --- */
+#character-container {
+    /* Higher than the text (4) but lower than the front hill (6) */
+    z-index: 5; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
