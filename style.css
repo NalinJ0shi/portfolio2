@@ -102,48 +102,44 @@ body {
 /* --- HERO CONTENT (The Text) --- */
 .hero-content {
     position: absolute;
-    /* Perfect Centering */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
     width: 100%;
     text-align: center;
     color: white;
     pointer-events: none;
-    
-    /* BEHIND the character (Character is 5, Front Hill is 6) */
-    z-index: 4; 
+    z-index: 4; /* Stays behind character */
 }
-
-/* Update these sections in your style.css */
-
-
 
 .hero-content h1 {
     font-family: 'Poppins', sans-serif;
-    font-weight: 900; /* Extra Bold for that 'Hero' look */
-    font-size: 15vw;  /* Massive responsive size */
-    text-transform: uppercase;
-    letter-spacing: -0.2rem; /* Tighter tracking for large text */
-    line-height: 0.8;
-    margin-bottom: 1rem;
+    /* Removing Bold: Using 300 (Light) for a clean look */
+    font-weight: 300; 
+    font-size: 15vw;
     
-    /* Ensuring it stays behind the character (z-index 4) */
-    position: relative;
-    z-index: 4; 
+    /* Removing All Caps */
+    text-transform: none; 
     
-    /* Subtle glow/depth */
-    text-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    /* Adjusting spacing for lowercase letters */
+    letter-spacing: -0.1rem; 
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    
+    /* Softening the shadow for the lighter font */
+    text-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 .hero-content p {
     font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 2vw; /* Scaled paragraph text */
-    letter-spacing: 0.5rem;
-    text-transform: uppercase;
-    opacity: 0.8;
+    font-weight: 300;
+    font-size: 1.5vw;
+    
+    /* Removing All Caps */
+    text-transform: none; 
+    
+    letter-spacing: 0.1rem;
+    opacity: 0.7;
 }
 
 /* --- THE CHARACTER --- */
