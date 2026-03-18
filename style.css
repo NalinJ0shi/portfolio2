@@ -82,3 +82,24 @@ body {
     text-align: center;
     color: #4A3A3A;
 }
+/* Position the character container within the parallax stack */
+#character-container {
+    z-index: 2; /* Sits above hills-back (z-index: 2), below hills-front (z-index: 3) */
+    pointer-events: none; /* Allows mouse movement to pass through to the parallax script */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure the canvas itself is interactive for the State Machine triggers */
+#character-container canvas {
+    pointer-events: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Optional: Shift hero-content higher to avoid overlapping the character too much */
+.hero-content {
+    z-index: 10;
+    pointer-events: none; /* Let the mouse reach the character behind the text */
+}
